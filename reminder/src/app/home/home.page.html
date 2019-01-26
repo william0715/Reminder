@@ -10,8 +10,14 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item-sliding *ngFor="let item of items">
+  <!-- <ion-list> -->
+    <ion-card *ngFor="let item of items">
+      <ion-card-content>
+        <ion-card-title>{{item.item_name}}</ion-card-title>
+        <p>Cycle : {{item.item_cycle}}</p>
+      </ion-card-content>
+    </ion-card>
+    <!-- <ion-item-sliding *ngFor="let item of items">
       <ion-item detail lines="full" routerLink="/detail/{{item.key}}">
         <ion-icon name="alarm" slot="start"></ion-icon>
         {{item.item_name}}
@@ -20,6 +26,6 @@
         <ion-item-option color="primary" (click)="edit(item.key)">EDIT</ion-item-option>
         <ion-item-option color="danger" (click)="delete(item.key)">DELETE</ion-item-option>
       </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+    </ion-item-sliding> -->
+  <!-- </ion-list> -->
 </ion-content>
