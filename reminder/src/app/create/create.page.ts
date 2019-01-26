@@ -9,24 +9,25 @@ import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Valida
   styleUrls: ['./create.page.scss'],
 })
 export class CreatePage implements OnInit {
-  ref = firebase.database().ref('infos/');
-  infoForm: FormGroup;
+  ref = firebase.database().ref('items/');
+  itemForm: FormGroup;
 
   constructor(private route: ActivatedRoute,
     public router: Router,
     private formBuilder: FormBuilder) { 
-      this.infoForm = this.formBuilder.group({
-        'info_title' : [null, Validators.required],
-        'info_description' : [null, Validators.required]
+      this.itemForm = this.formBuilder.group({
+        'item_name' : [null, Validators.required],
+        'item_cycle' : [null, Validators.required],
+        'item_description' : [null, Validators.required]
       });
     }
 
   ngOnInit() {
   }
 
-  saveInfo() {
-    let newInfo = firebase.database().ref('infos/').push();
-    newInfo.set(this.infoForm.value);
-    this.router.navigate(['/detail/'+newInfo.key]);
+  save() {
+    let newItem = firebase.database().ref('items/').push();
+    newItem.set(this.itemForm.value);
+    this.router.navigate(['/detail/' + newItem.key]);
   }
 }

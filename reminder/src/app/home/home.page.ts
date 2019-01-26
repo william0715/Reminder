@@ -10,18 +10,18 @@ import * as firebase from 'Firebase';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  infos = [];
-  ref = firebase.database().ref('infos/');
+  items = [];
+  ref = firebase.database().ref('items/');
 
   constructor(public router: Router, private alertController: AlertController) {
     this.ref.on('value', resp => {
-      this.infos = [];
-      this.infos = snapshotToArray(resp);
+      this.items = [];
+      this.items = snapshotToArray(resp);
     });
   }
 
   addInfo() {
-    this.router.navigate(['/add-info']);
+    this.router.navigate(['/add-item']);
   }
 
   edit(key) {
@@ -31,7 +31,7 @@ export class HomePage {
   async delete(key) {
     const alert = await this.alertController.create({
       header: 'Confirm!',
-      message: 'Are you sure want to delete this info?',
+      message: 'Are you sure want to delete this item?',
       buttons: [
         {
           text: 'Cancel',
@@ -43,7 +43,7 @@ export class HomePage {
         }, {
           text: 'Okay',
           handler: () => {
-            firebase.database().ref('infos/'+key).remove();
+            firebase.database().ref('items/'+key).remove();
           }
         }
       ]

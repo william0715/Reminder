@@ -9,12 +9,12 @@ import { ActivatedRoute, Router  } from '@angular/router';
   styleUrls: ['./detail.page.scss'],
 })
 export class DetailPage implements OnInit {
-  info = {};
+  item = {};
 
   constructor(private route: ActivatedRoute,
     public router: Router) { 
-      firebase.database().ref('infos/'+this.route.snapshot.paramMap.get('key')).on('value', resp => {
-        this.info = snapshotToObject(resp);
+      firebase.database().ref('items/'+this.route.snapshot.paramMap.get('key')).on('value', resp => {
+        this.item = snapshotToObject(resp);
       });
     }
 
