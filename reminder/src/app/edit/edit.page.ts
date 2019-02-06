@@ -10,15 +10,16 @@ import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Valida
   styleUrls: ['./edit.page.scss'],
 })
 export class EditPage implements OnInit {
-  ref = firebase.database().ref('infos/');
+  ref = firebase.database().ref('items/');
   infoForm: FormGroup;
 
   constructor(private route: ActivatedRoute,
               public router: Router,
               private formBuilder: FormBuilder) {
       this.infoForm = this.formBuilder.group({
-        'info_title' : [null, Validators.required],
-        'info_description' : [null, Validators.required]
+        'item_name' : [null, Validators.required],
+        'item_cycle' : [null, Validators.required],
+        'item_description' : [null, Validators.required]
       });
       this.getInfo(this.route.snapshot.paramMap.get('key'));
   }
@@ -27,16 +28,18 @@ export class EditPage implements OnInit {
   }
 
   getInfo(key) {
-    firebase.database().ref('infos/'+key).on('value', resp => {
-      let info = snapshotToObject(resp);
-      this.infoForm.controls['info_title'].setValue(info.info_title);
-      this.infoForm.controls['info_description'].setValue(info.info_description);
+    firebase.database().ref('items/'+ key).on('value', resp => {
+      let item = snapshotToObject(resp);
+      this.infoForm.controls['item_name'].setValue(item.item_name);
+      this.infoForm.controls['item_cycle'].setValue(item.item_cycle);
+      this.infoForm.controls['item_description'].setValue(item.item_description);
     });
   }
 
   updateInfo() {
-    let newInfo = firebase.database().ref('infos/'+this.route.snapshot.paramMap.get('key')).update(this.infoForm.value);
-    this.router.navigate(['/detail/'+this.route.snapshot.paramMap.get('key')]);
+    let newInfo = firebase.database().ref('items/'+this.route.snapshot.paramMap.get('key')).update(this.infoForm.value);
+    //this.router.navigate(['/detail/'+this.route.snapshot.paramMap.get('key')]);
+    this.router.navigate(['/home']);
   }  
 }
 

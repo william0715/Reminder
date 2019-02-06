@@ -10,13 +10,19 @@
 <ion-content padding>
   <form [formGroup]="infoForm">
     <ion-item>
-      <ion-label position="floating">Info Title</ion-label>
-      <ion-input type="text" formControlName="info_title"></ion-input>
+      <ion-label position="floating">Name</ion-label>
+      <ion-input type="text" formControlName="item_name"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Info Description</ion-label>
-      <ion-input type="text" formControlName="info_description"></ion-input>
+      <ion-label position="floating">Cycle</ion-label>
+      <ion-input type="number" formControlName="item_cycle"></ion-input>
     </ion-item>
-    <ion-button shape="round" color="primary" expand="block" [disabled]="!infoForm.valid" (click)="updateInfo()">Update</ion-button>
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-input type="text" formControlName="item_description"></ion-input>
+    </ion-item>
+    <div style="text-align: center; margin-top: 15px">
+      <ion-button shape="round" color="primary" [disabled]="!infoForm.valid" (click)="updateInfo()">Update</ion-button>    
+    </div>       
   </form>
 </ion-content>

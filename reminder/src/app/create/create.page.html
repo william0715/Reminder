@@ -21,6 +21,9 @@
       <ion-label position="floating">Description</ion-label>
       <ion-input type="text" formControlName="item_description"></ion-input>
     </ion-item>
-    <ion-button shape="round" color="primary" expand="block" [disabled]="!itemForm.valid" (click)="save()">Save</ion-button>
+    <div style="text-align: center; margin-top: 15px">
+      <ion-button shape="round" color="primary" [disabled]="!itemForm.valid" (click)="save()">Save</ion-button>
+      <!-- <ion-button shape="round" color="danger" routerLink="/home">Cancel</ion-button> -->
+    </div>    
   </form>
 </ion-content>

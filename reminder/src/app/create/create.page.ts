@@ -28,6 +28,7 @@ export class CreatePage implements OnInit {
   save() {
     let newItem = firebase.database().ref('items/').push();
     newItem.set(this.itemForm.value);
-    this.router.navigate(['/detail/' + newItem.key]);
+    //this.router.navigate(['/detail/' + newItem.key]);
+    this.router.navigate(['/home']);
   }
 }
