@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import * as firebase from 'firebase';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 
 const config = {
   apiKey: "AIzaSyA_3yV38hJ9rtFUap5ZKRzDp9PgI4fT7Oc",
@@ -22,7 +23,8 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private backgroundMode: BackgroundMode
   ) {
     this.initializeApp();
   }
@@ -31,6 +33,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.backgroundMode.enable();
     });
     firebase.initializeApp(config);
   }
